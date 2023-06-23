@@ -1,0 +1,160 @@
+// primer ejemplo 
+
+use test
+
+db.createCollection("users")
+
+show collections
+
+db.users.insertMany([{name: "Ana", gender: "F" }, {name: "Pedro", gender: "M"}])
+
+db.users.find()
+
+db.users.find({gender: "M"})
+
+// ejemplo en vivo
+
+use baseCRUD
+
+db.createCollection("mascotas")
+
+db.mascotas.insertMany([
+  { nombre: "Mascota1", especie: "Perro", edad: 2 },
+  { nombre: "Mascota2", especie: "Gato", edad: 4 },
+  { nombre: "Mascota3", especie: "Perro", edad: 1 }
+])
+
+db.mascotas.find({ especie: "Perro" })
+
+db.mascotas.count()
+
+//actividad en clase
+
+use colegio
+
+db.estudiantes.insertMany([
+  {
+    nombre: "Juan",
+    apellido: "Pérez",
+    curso: "10A",
+    edad: 16,
+    correo: "juan@example.com",
+    sexo: "H"
+  },
+  {
+    nombre: "María",
+    apellido: "Gómez",
+    curso: "9B",
+    edad: 15,
+    correo: "maria@example.com",
+    sexo: "M"
+  },
+  {
+    nombre: "Carlos",
+    apellido: "López",
+    curso: "11A",
+    edad: 17,
+    correo: "carlos@example.com",
+    sexo: "H"
+  },
+  {
+    nombre: "Laura",
+    apellido: "Martínez",
+    curso: "10B",
+    edad: 16,
+    correo: "laura@example.com",
+    sexo: "M"
+  },
+  {
+    nombre: "Pedro",
+    apellido: "Rodríguez",
+    curso: "11B",
+    edad: 17,
+    correo: "pedro@example.com",
+    sexo: "H"
+  }
+])
+
+db.estudiantes.insertOne({
+  nombre: "Ana",
+  apellido: "García",
+  curso: "12A"
+})
+
+db.estudiantes.find()
+
+db.estudiantes.find({ sexo: "H" })
+
+db.estudiantes.count()
+
+db.estudiantes.count({ sexo: "M" })
+
+// parte 2
+
+db.estudiantes.find().sort({ edad: 1 })  // Orden ascendente por edad
+db.estudiantes.find().sort({ edad: -1 }) // Orden descendente por edad
+
+db.estudiantes.find({}, { nombre: 1, edad: 1 })
+db.estudiantes.find({}, { _id: 0 })
+
+// ejercicio clientes
+
+use clientes
+
+db.clientes.insertMany([
+   {
+      "nombre": "Juan",
+      "edad": 30,
+      "email": "juan@example.com"
+   },
+   {
+      "nombre": "Lucia",
+      "edad": 25,
+      "email": "lucia@example.com"
+   },
+   {
+      "nombre": "Fede",
+      "edad": 28,
+      "email": "fede@example.com"
+   },
+   {
+      "nombre": "Ana",
+      "edad": 35,
+      "email": "ana@example.com"
+   },
+   {
+      "nombre": "Pedro",
+      "edad": 32,
+      "email": "pedro@example.com"
+   }
+])
+
+db.clientes.find().sort({ edad: -1 })
+
+db.clientes.find().sort({ edad: 1 }).limit(1)
+
+db.clientes.find().sort({ edad: 1 }).limit(1).skip(1)
+
+db.clientes.find({ nombre: "Juan" })
+
+db.clientes.find({ nombre: "Juan", edad: 29 })
+
+db.clientes.find({ $or: [{ nombre: "Juan" }, { nombre: "Lucia" }] })
+
+db.clientes.find({ edad: { $gt: 25 } })
+
+db.clientes.find({ edad: { $lte: 25 } })
+
+db.clientes.find({ edad: { $ne: 25 } })
+
+db.clientes.find({ edad: { $gte: 26, $lte: 35 } })
+
+db.clientes.updateOne({ nombre: "Fede" }, { $set: { edad: 36 } })
+
+db.clientes.find({ nombre: "Fede" })
+
+db.clientes.updateMany({ edad: 25 }, { $set: { edad: 26 } })
+
+db.clientes.find({ edad: 26 })
+
+db.clientes.deleteMany({ nombre: "Juan" })
