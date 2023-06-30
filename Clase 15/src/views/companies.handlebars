@@ -1,0 +1,14 @@
+<div>
+  <h1>Empresas registradas</h1>
+  {{#each companies}}
+    <div>
+      <h2>Name: {{name}}</h2>
+      <ul>
+        <li>Address: {{address}}</li>
+        <li>City: {{city}}</li>
+        <li>Country: {{country}}</li>
+        <li>Email: {{email}}</li>
+      </ul>
+    </div>
+  {{/each}}
+</div>
