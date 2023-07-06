@@ -1,0 +1,18 @@
+import mongoose from "mongoose";
+
+const orderCollection = "orders";
+
+const orderSchema = mongoose.Schema({
+  name: "String",
+  size: {
+    type: String,
+    enum: ["small", "medium", "large"],
+    default: "medium",
+  },
+  price: Number,
+  quantity: Number,
+  data: Date,
+});
+
+const orderModel = mongoose.model(orderCollection, orderSchema);
+export default orderModel;
