@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "fe911435-8cbd-4357-96dd-7f364512f442",
+		"name": "Tercera practica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14276377"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/sessions/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Pepe\",\n    \"last_name\": \"Sand\",\n    \"email\": \"pepe@mail\",\n    \"password\": \"pepepass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/sessions/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sessions",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
