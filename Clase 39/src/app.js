@@ -12,9 +12,7 @@ import __dirname from "./utils/index.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const connection = mongoose.connect(
-  `mongodb+srv://diegojofre:plataforma5@cluster0.bzk278t.mongodb.net/?retryWrites=true&w=majority`
-);
+const connection = mongoose.connect("YOUR MONGODB URL");
 
 const swaggerOptions = {
   definition: {
