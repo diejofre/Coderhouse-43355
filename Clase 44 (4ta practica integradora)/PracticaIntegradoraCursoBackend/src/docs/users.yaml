@@ -1,0 +1,131 @@
+# User
+components:
+  requestBodies:
+    nuevoUsuario:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: Nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        email:
+          type: string
+          description: Email único del usuario
+        dni:
+          type: string
+          description: Número de identificación
+        birthDate:
+          type: Date
+          description: Fecha de nacimiento
+        gender:
+          type: string
+          description: Género (M/F)
+        role:
+          type: string
+          description: Rol del usuario (student/teacher)
+        courses:
+          type: Array
+          description: cursos asignados al usuario
+        password:
+          type: string
+          description: Contraseña del usuario sin hashear
+      example:
+        name: Maximiliano Carnero
+        email: correomaxi@correo.com
+        dni: 30340491
+        birthDate: 13-07-1996
+        gender: M
+        role: student
+        courses: []
+        password: 123
+  schemas:
+    User:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: Nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        email:
+          type: string
+          description: Email único del usuario
+        dni:
+          type: string
+          description: Número de identificación
+        birthDate:
+          type: Date
+          description: Fecha de nacimiento
+        gender:
+          type: string
+          description: Género (M/F)
+        role:
+          type: string
+          description: Rol del usuario (student/teacher)
+        courses:
+          type: Array
+          description: cursos asignados al usuario
+        password:
+          type: string
+          description: Contraseña del usuario sin hashear
+      example:
+        id: ObjectId("asdas33123asd3ze31")
+        name: Veronica Vipputo
+        email: correoVero@correo.com
+        password: 1asd391asc391%
+paths:
+  /api/users/:
+    get:
+      summary: Obtiene todos los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Los usuarios se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      summary: Crea un nuevo usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/nuevoUsuario"
+      responses:
+        "200":
+          description: El usuario se agregó satisfactoriamente
+  /api/users/{uid}/courses/{cid}:
+    post:
+      summary: Agrega un nuevo curso al usuario indicado.
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Id referente al usuario
+          schema:
+            type: string
+        - name: cid
+          in: path
+          required: true
+          description: Id referente al curso
+          schema:
+            type: string
+      responses:
+        "200":
+          description: El curso se agregó correctamente al usuario
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
